@@ -274,8 +274,26 @@ Digital-Plant-Knowledge-System/
 | `2026-09-28 12:21` | Antigravity AI Agent | `[Docs]` `[Refactor]` | Architecture & Status Alignment | Refocused `design.md` to 100% accurately reflect repository scope (dedicated frontend application client) and current state (empty/pre-scaffolding). | `Digital-Plant-Knowledge-System/design.md` |
 | `2026-09-28 12:38` | Antigravity AI Agent | `[Docs]` `[Architecture]` | React Web Design Specification | Completed `/grill-me` architectural alignment covering Next.js App Router, Vanilla CSS Modules, MyBIS catalog, anti-poaching GPS privacy maps, Observation Review workbench, IoT telemetry dashboard, QR field dossier, and AI submission studio. | `Digital-Plant-Knowledge-System/design.md` |
 | `2026-09-28 12:55` | Antigravity AI Agent | `[Feat]` `[Scaffolding]` | Sprint 1 Implementation | Implemented and verified Sprint 1 deliverables: Next.js 14 App Router scaffolding, botanical design tokens, dual-mode data layer with Niah seed data (Item 14), Conservation Officer Auth & RBAC (Item 15), Web Skeleton & Admin Dashboard (Item 13), and MyBIS-style Species Catalog with live search & detailed botanical dossiers (Item 16). | `package.json`, `tsconfig.json`, `next.config.mjs`, `src/**/*` (22 files) |
+| `2026-09-28 13:38` | Antigravity AI Agent | `[Setup]` `[Database]` | Supabase Cloud Database | Created complete PostgreSQL schema (`schema.sql`), authentic Niah National Park seed dataset (`seed.sql`), RLS security policies, Storage bucket configuration, `.env.example`, and step-by-step setup guide (`supabase/README.md`). | `supabase/schema.sql`, `supabase/seed.sql`, `supabase/README.md`, `.env.example`, `design.md` |
 
 ### Detailed Change Entries
+
+#### Entry 005: 2026-09-28 13:38:00 +08:00
+- **Actor:** Antigravity AI Agent
+- **Type:** Supabase Cloud Database Setup (`[Setup]` `[Database]`)
+- **Summary:**
+  - Prepared production-ready Supabase PostgreSQL schema in `supabase/schema.sql` defining `species`, `observations`, `iot_nodes`, and `profiles` tables.
+  - Configured Row-Level Security (RLS) policies enforcing public read on species/approved observations and restricting updates/reviews to authenticated conservation officers.
+  - Implemented automatic user profile creation trigger (`handle_new_user`) linked to Supabase Auth.
+  - Configured `botanical-photos` Supabase Storage bucket with public read and authenticated write access.
+  - Seeded 6 authentic Niah National Park plant species, sample field observations, and IoT sensor nodes in `supabase/seed.sql`.
+  - Created `.env.example` template and comprehensive setup documentation in `supabase/README.md`.
+- **Files Created/Modified:**
+  - `Digital-Plant-Knowledge-System/supabase/schema.sql`
+  - `Digital-Plant-Knowledge-System/supabase/seed.sql`
+  - `Digital-Plant-Knowledge-System/supabase/README.md`
+  - `Digital-Plant-Knowledge-System/.env.example`
+  - `Digital-Plant-Knowledge-System/design.md`
 
 #### Entry 004: 2026-09-28 12:55:00 +08:00
 - **Actor:** Antigravity AI Agent

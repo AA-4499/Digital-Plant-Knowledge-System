@@ -1,0 +1,253 @@
+-- ==============================================================================
+-- Digital Plant Knowledge System (DPKS) — Seed Dataset
+-- Client / Field: Sarawak Forestry Corporation (SFC) — Niah National Park
+-- ==============================================================================
+
+-- 1. Insert Niah National Park Plant Species
+INSERT INTO public.species (
+    id, scientific_name, common_name, family, genus, species, author, local_names,
+    conservation_status, iucn_code, sarawak_protection_status, growth_habit, height_range,
+    habitat, niah_zone, coordinates_rough, coordinates_exact, description,
+    morphology, ecological_significance, threats, photos, qr_uuid
+) VALUES
+(
+    'shorea-albida',
+    'Shorea albida',
+    'Alan Bunga',
+    'Dipterocarpaceae',
+    'Shorea',
+    'albida',
+    'Symington',
+    ARRAY['Alan', 'Alan bunga', 'Meranti bunga'],
+    'Endangered',
+    'EN',
+    'Protected',
+    'Emergent Tree',
+    '45m - 60m',
+    'Peat swamp forest, limestone fringe transition',
+    'Niah River Floodplain & Peat Margin',
+    '{"lat": 3.815, "lng": 113.782, "bufferKm": 4.5}',
+    '{"lat": 3.81492, "lng": 113.78214, "accuracyMeters": 4.2}',
+    'Shorea albida is an iconic emergent tree of Borneo, capable of forming pure canopy stands. It is known for its greyish-white foliage appearance when viewed from above during crown flushes.',
+    '{"leaves": "Oblong-elliptic, 7-15 cm long, coriaceous, glaucous underside giving a pale appearance.", "bark": "Deeply fissured, dark greyish-brown to blackish with light resin exudates.", "flowers": "Small cream-colored petals arranged in panicles, blooming irregularly during mast flowering events.", "fruit": "Prominent 3-winged calyx nut, wind-dispersed across the forest canopy."}',
+    'Dominant canopy component regulating the microclimate of peat and alluvial buffer zones surrounding Niah National Park.',
+    ARRAY['Historical selective logging', 'Habitat fragmentation', 'Mast flowering irregularity'],
+    '[{"url": "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=1200&q=80", "caption": "Canopy view of mature Shorea stand in tropical rainforest", "credit": "Sarawak Forestry Herbarium Archive", "isPrimary": true}]',
+    'sfc-niah-001-shoralb'
+),
+(
+    'nepenthes-bicalcarata',
+    'Nepenthes bicalcarata',
+    'Fanged Pitcher Plant',
+    'Nepenthaceae',
+    'Nepenthes',
+    'bicalcarata',
+    'Hook.f.',
+    ARRAY['Periuk Kera Bergigi', 'Pioh Entuyut'],
+    'Vulnerable',
+    'VU',
+    'Totally Protected',
+    'Carnivorous Plant',
+    'Climber up to 20m into canopy',
+    'Peat swamp forest, moist limestone base gullies',
+    'Kuala Gading River Trail & West Flank',
+    '{"lat": 3.821, "lng": 113.771, "bufferKm": 3.8}',
+    '{"lat": 3.82081, "lng": 113.77093, "accuracyMeters": 3.1}',
+    'Renowned for the two sharp, curved thorns or "fangs" projecting downwards from beneath the pitcher lid, this species has an obligate mutualistic relationship with the ant Camponotus schmitzi.',
+    '{"leaves": "Large, strap-shaped, up to 60 cm long, terminating in a thick tendril that inflates into the pitcher.", "bark": "Cylindrical climbing stem, reddish to yellowish-green, becoming woody with age.", "flowers": "Dioecious; racemose inflorescence bearing small, brownish-yellow flowers with pungent nectar scent.", "fruit": "Capsule bearing numerous filiform seeds."}',
+    'Specialized carnivory model that traps insects while housing symbiotic ants which clean the peristome and protect the plant from weevil herbivores.',
+    ARRAY['Illegal plant poaching', 'Hydrological disruption to peat swamps'],
+    '[{"url": "https://images.unsplash.com/photo-1596489381734-75c1a7d6e4a2?auto=format&fit=crop&w=1200&q=80", "caption": "Lower pitcher with prominent paired peristome fangs", "credit": "Botanical Survey Expedition Niah 2026", "isPrimary": true}]',
+    'sfc-niah-002-nepbical'
+),
+(
+    'rafflesia-pricei',
+    'Rafflesia pricei',
+    'Price''s Rafflesia',
+    'Rafflesiaceae',
+    'Rafflesia',
+    'pricei',
+    'Meijer',
+    ARRAY['Bunga Pakma', 'Yak-yak'],
+    'Endangered',
+    'EN',
+    'Totally Protected',
+    'Herb',
+    'Flower diameter 25cm - 35cm',
+    'Primary mixed dipterocarp and limestone hill forest floor',
+    'Sub-Zone C (Subis Hill Slopes)',
+    '{"lat": 3.808, "lng": 113.795, "bufferKm": 5.0}',
+    '{"lat": 3.80789, "lng": 113.79482, "accuracyMeters": 5.8}',
+    'An obligate parasitic plant lacking leaves, stems, or roots. It survives entirely within the vine Tetrastigma, emerging only to produce large, fleshy, foul-scented flowers pollinated by carrion flies.',
+    '{"leaves": "None (endophytic micro-filaments inside host tissue).", "bark": "None.", "flowers": "Five reddish-brown perigone lobes densely covered with white warts; central diaphragm aperture 8-12 cm wide.", "fruit": "Fleshy berry-like structure containing thousands of microscopic seeds."}',
+    'Flagship species for Borneo conservation with profound ecotourism significance and extreme biological specialization.',
+    ARRAY['Trampling along unauthorized trails', 'Host vine disturbance', 'Short flowering window (4-6 days)'],
+    '[{"url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80", "caption": "Fresh blooming Rafflesia flower on the forest floor", "credit": "Sarawak Forestry Corporation Niah Unit", "isPrimary": true}]',
+    'sfc-niah-003-rafprice'
+),
+(
+    'eusideroxylon-zwageri',
+    'Eusideroxylon zwageri',
+    'Borneo Ironwood / Belian',
+    'Lauraceae',
+    'Eusideroxylon',
+    'zwageri',
+    'Teijsm. & Binn.',
+    ARRAY['Belian', 'Tebelian', 'Kayu Besi'],
+    'Vulnerable',
+    'VU',
+    'Protected',
+    'Canopy Tree',
+    '30m - 50m',
+    'Alluvial riverbanks and gentle limestone foothills',
+    'Sungai Niah Riparian Corridor',
+    '{"lat": 3.832, "lng": 113.765, "bufferKm": 3.0}',
+    '{"lat": 3.83191, "lng": 113.76523, "accuracyMeters": 2.8}',
+    'Renowned as one of the heaviest and most durable hardwoods in the world. Belian trees are extremely slow-growing and can live for well over 1,000 years. Felling or export without a state permit is prohibited.',
+    '{"leaves": "Alternate, simple, coriaceous, dark shiny green above, 15-30 cm long.", "bark": "Rough, reddish to dark brown, shedding in small thin longitudinal flakes.", "flowers": "Small yellowish-green bisexual flowers in axillary panicles.", "fruit": "Very large, single-seeded drupe, 8-15 cm long, dispersed by water and porcupines."}',
+    'Deep rooting systems protect riverbank integrity against monsoonal erosion along the Niah River basin.',
+    ARRAY['Extreme slow regeneration rate', 'Past over-exploitation for structural timber'],
+    '[{"url": "https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=1200&q=80", "caption": "Towering Belian tree along the river terrace", "credit": "SFC Plant Ecology Division", "isPrimary": true}]',
+    'sfc-niah-004-eusiwzw'
+),
+(
+    'begonia-niahensis',
+    'Begonia niahensis',
+    'Niah Cave Begonia',
+    'Begoniaceae',
+    'Begonia',
+    'niahensis',
+    'Kiew',
+    ARRAY['Begonia Gua Niah', 'Asam Batu'],
+    'Critically Endangered',
+    'CR',
+    'Totally Protected',
+    'Herb',
+    '15cm - 30cm',
+    'Shaded, vertical damp limestone cliffs near cave mouths',
+    'Great Cave & Painted Cave Perimeter',
+    '{"lat": 3.818, "lng": 113.788, "bufferKm": 2.5}',
+    '{"lat": 3.81845, "lng": 113.78832, "accuracyMeters": 6.5}',
+    'A micro-endemic species discovered exclusively on the damp limestone karst cliff faces surrounding Niah’s Great Cave complex. Highly adapted to low-light conditions and calcareous soils.',
+    '{"leaves": "Asymmetric cordate leaves with iridescent silvery-green markings and wine-red undersides.", "bark": "Succulent rhizomatous stem clinging to rock fissures.", "flowers": "Delicate pinkish-white blossoms held on slender erect peduncles.", "fruit": "Three-winged capsule adapted to splash-cup seed dispersal by cave ceiling drips."}',
+    'Specialized calciphile bio-indicator sensitive to tourist microclimate changes within cave entrance corridors.',
+    ARRAY['Micro-endemic range restriction', 'Desiccation from altered cave airflow', 'Guano dust deposition'],
+    '[{"url": "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?auto=format&fit=crop&w=1200&q=80", "caption": "Foliage of Begonia clinging to moist limestone karst", "credit": "Swinburne Sarawak Biodiversity Group", "isPrimary": true}]',
+    'sfc-niah-005-begniah'
+),
+(
+    'paphiopedilum-stonei',
+    'Paphiopedilum stonei',
+    'Stone''s Slipper Orchid',
+    'Orchidaceae',
+    'Paphiopedilum',
+    'stonei',
+    '(Hook.f.) Stein',
+    ARRAY['Anggerik Kasut Niah', 'Bunga Kasut'],
+    'Endangered',
+    'EN',
+    'Totally Protected',
+    'Epiphyte',
+    'Leaves 30cm - 45cm, scape up to 60cm',
+    'Mossy crevices on steep limestone pinnacles (altitude 100m-500m)',
+    'Gunung Subis Limestone Pinnacles',
+    '{"lat": 3.826, "lng": 113.791, "bufferKm": 3.5}',
+    '{"lat": 3.82572, "lng": 113.79144, "accuracyMeters": 7.2}',
+    'One of the most regal slipper orchids of Southeast Asia, producing spikes of 2 to 4 dramatic flowers with long, twisting, ribbon-like petals hanging downwards up to 15 cm.',
+    '{"leaves": "Distichous, strap-like, leathery, clear emerald green, up to 45 cm long.", "bark": "Epiphytic / lithophytic base adhering firmly with thick velamen-covered roots.", "flowers": "Dorsal sepal white with purple striping; lateral petals yellow-green twisting into dark purple ribbons; pouch reddish-pink.", "fruit": "Cylindrical ribbed capsule dispersing windblown dust-seeds."}',
+    'Pollinated exclusively by hoverflies and represents the pinnacle of Sarawak’s fragile cliff-top orchid diversity.',
+    ARRAY['High commercial horticultural poaching demand', 'Wildfire during prolonged dry spells'],
+    '[{"url": "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=1200&q=80", "caption": "Multi-floral spike of Paphiopedilum in full bloom", "credit": "Sarawak Forestry Orchid Specialist Unit", "isPrimary": true}]',
+    'sfc-niah-006-paphston'
+)
+ON CONFLICT (id) DO UPDATE SET
+    scientific_name = EXCLUDED.scientific_name,
+    common_name = EXCLUDED.common_name,
+    photos = EXCLUDED.photos,
+    updated_at = NOW();
+
+-- 2. Insert Sample Field Observations
+INSERT INTO public.observations (
+    id, species_id, suggested_scientific_name, suggested_family, botanist_name,
+    botanist_id, status, submitted_at, photo_url, notes, gps_location
+) VALUES
+(
+    'obs-2026-001',
+    'nepenthes-bicalcarata',
+    'Nepenthes bicalcarata',
+    'Nepenthaceae',
+    'Frederick Sii',
+    'botanist-001',
+    'pending',
+    NOW() - INTERVAL '1 day',
+    'https://images.unsplash.com/photo-1596489381734-75c1a7d6e4a2?auto=format&fit=crop&w=800&q=80',
+    'Observed healthy cluster of lower pitchers on climbing vine along Sungai Niah loop trail. Ants active on peristome.',
+    '{"lat": 3.82083, "lng": 113.77095, "accuracyMeters": 3.2}'
+),
+(
+    'obs-2026-002',
+    'begonia-niahensis',
+    'Begonia niahensis',
+    'Begoniaceae',
+    'Andy Chu',
+    'botanist-002',
+    'pending',
+    NOW() - INTERVAL '3 hours',
+    'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?auto=format&fit=crop&w=800&q=80',
+    'Single fertile specimen found on wet limestone gully 50m north of Great Cave boardwalk. Flower buds present.',
+    '{"lat": 3.81848, "lng": 113.78835, "accuracyMeters": 5.1}'
+)
+ON CONFLICT (id) DO NOTHING;
+
+-- 3. Insert IoT Sentinel Sensor Nodes
+INSERT INTO public.iot_nodes (
+    node_id, name, zone, status, battery_percent, last_heartbeat,
+    temperature_c, humidity_percent, soil_moisture_percent,
+    pir_movement_detected, tilt_alert, threat_details
+) VALUES
+(
+    'ESP32-NODE-01',
+    'Limestone Pinnacle Sentinel Alpha',
+    'Subis Limestone Ridge',
+    'online',
+    88,
+    NOW(),
+    27.40,
+    82.00,
+    68.00,
+    false,
+    false,
+    NULL
+),
+(
+    'ESP32-NODE-02',
+    'Great Cave Perimeter Sensor Beta',
+    'Great Cave Mouth West',
+    'warning',
+    42,
+    NOW() - INTERVAL '2 minutes',
+    29.80,
+    91.00,
+    84.00,
+    false,
+    false,
+    'Elevated ambient temperature & battery degradation warning'
+),
+(
+    'ESP32-NODE-03',
+    'Belian Sanctuary Watcher Gamma',
+    'Sungai Niah Trail 4',
+    'threat_triggered',
+    95,
+    NOW() - INTERVAL '15 seconds',
+    26.80,
+    86.00,
+    72.00,
+    true,
+    true,
+    'PIR motion & physical tilt vibration detected in protected flora zone'
+)
+ON CONFLICT (node_id) DO UPDATE SET
+    temperature_c = EXCLUDED.temperature_c,
+    humidity_percent = EXCLUDED.humidity_percent,
+    last_heartbeat = NOW();
