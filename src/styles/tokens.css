@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Botanical Design Tokens — Digital Plant Knowledge System (Niah NP)
+   ========================================================================== */
+
+:root {
+  /* Brand Botanical Palette */
+  --color-forest-dark: #0D1F14;
+  --color-forest-deep: #142A1D;
+  --color-forest: #1A3826;
+  --color-forest-light: #254F37;
+  --color-emerald: #2E7D47;
+  --color-emerald-light: #3DA862;
+  --color-emerald-glow: rgba(61, 168, 98, 0.25);
+  
+  --color-moss: #506D56;
+  --color-moss-light: #7E9B84;
+  --color-limestone: #D4D8CF;
+  --color-limestone-light: #E9ECE5;
+  
+  /* Neutral Ground & Surface (Light Theme) */
+  --bg-primary: #F7F9F6;
+  --bg-secondary: #EDF2EB;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --bg-glass-card: rgba(255, 255, 255, 0.92);
+  --border-glass: rgba(30, 60, 40, 0.08);
+  --border-subtle: #E2E8DF;
+
+  /* Typography Colors */
+  --text-primary: #122116;
+  --text-secondary: #435447;
+  --text-muted: #758679;
+  --text-on-dark: #F7FAF8;
+
+  /* Conservation Status Badges (IUCN & Sarawak Protected) */
+  --badge-cr-bg: #FEECEB;
+  --badge-cr-text: #B71C1C;
+  --badge-cr-border: #FFCDD2;
+
+  --badge-en-bg: #FFF3E0;
+  --badge-en-text: #E65100;
+  --badge-en-border: #FFE0B2;
+
+  --badge-vu-bg: #FFFDE7;
+  --badge-vu-text: #F57F17;
+  --badge-vu-border: #FFF59D;
+
+  --badge-nt-bg: #E0F2F1;
+  --badge-nt-text: #004D40;
+  --badge-nt-border: #B2DFDB;
+
+  --badge-lc-bg: #E8F5E9;
+  --badge-lc-text: #1B5E20;
+  --badge-lc-border: #C8E6C9;
+
+  --badge-prot-bg: #EDE7F6;
+  --badge-prot-text: #4A148C;
+  --badge-prot-border: #D1C4E9;
+
+  /* Shadows & Depth */
+  --shadow-sm: 0 1px 3px rgba(18, 33, 22, 0.06), 0 1px 2px rgba(18, 33, 22, 0.04);
+  --shadow-md: 0 4px 12px rgba(18, 33, 22, 0.08), 0 2px 4px rgba(18, 33, 22, 0.04);
+  --shadow-lg: 0 12px 32px rgba(18, 33, 22, 0.12), 0 4px 12px rgba(18, 33, 22, 0.06);
+  --shadow-hover: 0 16px 40px rgba(46, 125, 71, 0.16);
+
+  /* Geometry & Spacing */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Layout Containers */
+  --max-width-content: 1240px;
+  --nav-height: 72px;
+  --sidebar-width: 260px;
+
+  /* Transition Speeds */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme support for Admin Command Center */
+[data-theme="dark"] {
+  --bg-primary: #0D1611;
+  --bg-secondary: #132219;
+  --bg-surface: #182B20;
+  --bg-surface-elevated: #1F3629;
+  --bg-glass: rgba(24, 43, 32, 0.85);
+  --bg-glass-card: rgba(24, 43, 32, 0.92);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-subtle: #243D2F;
+
+  --text-primary: #EDF4EE;
+  --text-secondary: #ADC1B3;
+  --text-muted: #7E9B87;
+  --text-on-dark: #FFFFFF;
+}
