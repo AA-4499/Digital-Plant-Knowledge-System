@@ -36,20 +36,8 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
         gap: '1rem',
         color: 'var(--text-muted)'
       }}>
-        <div style={{
-          width: '36px',
-          height: '36px',
-          border: '3px solid var(--border-subtle)',
-          borderTopColor: 'var(--color-emerald)',
-          borderRadius: '50%',
-          animation: 'spin 0.8s linear infinite'
-        }} />
+        <div className="spinner" style={{ width: '36px', height: '36px' }} />
         <p>Verifying Conservation Officer Credentials...</p>
-        <style jsx>{`
-          @keyframes spin {
-            to { transform: rotate(360deg); }
-          }
-        `}</style>
       </div>
     );
   }

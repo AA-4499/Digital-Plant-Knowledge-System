@@ -40,21 +40,8 @@ export default function SpeciesDetailPage() {
   if (loading) {
     return (
       <div style={{ padding: '6rem 0', textAlign: 'center', color: 'var(--text-muted)' }}>
-        <div style={{
-          width: '40px',
-          height: '40px',
-          border: '3px solid var(--border-subtle)',
-          borderTopColor: 'var(--color-emerald)',
-          borderRadius: '50%',
-          margin: '0 auto 1rem auto',
-          animation: 'spin 0.8s linear infinite'
-        }} />
+        <div className="spinner" style={{ margin: '0 auto 1rem auto' }} />
         <p>Loading botanical dossier from database...</p>
-        <style jsx>{`
-          @keyframes spin {
-            to { transform: rotate(360deg); }
-          }
-        `}</style>
       </div>
     );
   }
@@ -88,7 +75,9 @@ export default function SpeciesDetailPage() {
     );
   }
 
-  const activePhoto = species.photos[selectedPhotoIndex] || species.photos[0];
+  const activePhoto = (species.photos && species.photos.length > 0)
+    ? (species.photos[selectedPhotoIndex] || species.photos[0])
+    : { url: 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=800&q=80', caption: 'Botanical specimen', credit: 'Sarawak Forestry' };
 
   return (
     <div style={{ padding: '2.5rem 0 5rem 0', background: 'var(--bg-primary)' }}>
@@ -156,7 +145,7 @@ export default function SpeciesDetailPage() {
                 <span style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
                   {species.commonName}
                 </span>
-                {species.localNames.length > 0 && (
+                {Array.isArray(species.localNames) && species.localNames.length > 0 && (
                   <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
                     (Local: {species.localNames.join(', ')})
                   </span>
@@ -270,7 +259,7 @@ export default function SpeciesDetailPage() {
             </div>
 
             {/* Thumbnail switcher (if multiple photos) */}
-            {species.photos.length > 1 && (
+            {species.photos && species.photos.length > 1 && (
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 {species.photos.map((p, idx) => (
                   <button
@@ -394,7 +383,7 @@ export default function SpeciesDetailPage() {
               Anti-Poaching Sensitive Coordinate Masking
             </h3>
             <p style={{ fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--color-limestone)' }}>
-              To prevent illegal harvesting and commercial poaching of endangered Sarawak biodiversity, high-precision GPS coordinates for <em>{species.scientificName}</em> are restricted. Public visitors are shown a generalized regional zone (~{species.coordinatesRough.bufferKm} km radius) within Niah National Park.
+              To prevent illegal harvesting and commercial poaching of endangered Sarawak biodiversity, high-precision GPS coordinates for <em>{species.scientificName}</em> are restricted. Public visitors are shown a generalized regional zone (~{species.coordinatesRough?.bufferKm ?? 4.0} km radius) within Niah National Park.
             </p>
           </div>
 

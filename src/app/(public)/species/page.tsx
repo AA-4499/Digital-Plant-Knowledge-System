@@ -249,21 +249,8 @@ function SpeciesCatalogContent() {
         {/* Catalog Body */}
         {loading ? (
           <div style={{ textAlign: 'center', padding: '4rem 0', color: 'var(--text-muted)' }}>
-            <div style={{
-              width: '40px',
-              height: '40px',
-              border: '3px solid var(--border-subtle)',
-              borderTopColor: 'var(--color-emerald)',
-              borderRadius: '50%',
-              margin: '0 auto 1rem auto',
-              animation: 'spin 0.8s linear infinite'
-            }} />
+            <div className="spinner" style={{ margin: '0 auto 1rem auto' }} />
             <p>Filtering botanical specimens...</p>
-            <style jsx>{`
-              @keyframes spin {
-                to { transform: rotate(360deg); }
-              }
-            `}</style>
           </div>
         ) : speciesList.length === 0 ? (
           <div style={{

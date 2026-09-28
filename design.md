@@ -275,8 +275,34 @@ Digital-Plant-Knowledge-System/
 | `2026-09-28 12:38` | Antigravity AI Agent | `[Docs]` `[Architecture]` | React Web Design Specification | Completed `/grill-me` architectural alignment covering Next.js App Router, Vanilla CSS Modules, MyBIS catalog, anti-poaching GPS privacy maps, Observation Review workbench, IoT telemetry dashboard, QR field dossier, and AI submission studio. | `Digital-Plant-Knowledge-System/design.md` |
 | `2026-09-28 12:55` | Antigravity AI Agent | `[Feat]` `[Scaffolding]` | Sprint 1 Implementation | Implemented and verified Sprint 1 deliverables: Next.js 14 App Router scaffolding, botanical design tokens, dual-mode data layer with Niah seed data (Item 14), Conservation Officer Auth & RBAC (Item 15), Web Skeleton & Admin Dashboard (Item 13), and MyBIS-style Species Catalog with live search & detailed botanical dossiers (Item 16). | `package.json`, `tsconfig.json`, `next.config.mjs`, `src/**/*` (22 files) |
 | `2026-09-28 13:38` | Antigravity AI Agent | `[Setup]` `[Database]` | Supabase Cloud Database | Created complete PostgreSQL schema (`schema.sql`), authentic Niah National Park seed dataset (`seed.sql`), RLS security policies, Storage bucket configuration, `.env.example`, and step-by-step setup guide (`supabase/README.md`). | `supabase/schema.sql`, `supabase/seed.sql`, `supabase/README.md`, `.env.example`, `design.md` |
+| `2026-09-28 14:05` | Antigravity AI Agent | `[Fix]` `[Bug]` | /species Client Exception & Vercel Deploy | Resolved client-side runtime exception on /species. Implemented snake_case-to-camelCase database row normalization (mapDbRowToSpecies, mapDbRowToObservation), eliminated deprecated Next.js 14 App Router <style jsx> blocks, implemented global CSS spinner animation, and fortified photo arrays and metadata across all cards and detail views with defensive null-safe chaining. | `src/services/api.ts`, `src/app/globals.css`, `src/components/**/*`, `src/app/**/*`, `design.md` |
 
 ### Detailed Change Entries
+
+#### Entry 006: 2026-09-28 14:05:00 +08:00
+- **Actor:** Antigravity AI Agent
+- **Type:** Client Runtime Exception Fix & App Router Style Cleanup (`[Fix]` `[Bug]`)
+- **Summary:**
+  - Resolved production client-side exception *"Application error: a client-side exception has occurred"* triggered on `/species` route in Vercel deployment.
+  - Root Cause 1: PostgreSQL tables in Supabase return fields in `snake_case` (e.g., `scientific_name`, `photos`, `local_names`), whereas TypeScript types and UI components expected `camelCase` properties. Direct assignment left `species.photos` unmapped, causing an unhandled `TypeError: Cannot read properties of undefined (reading 'find')` in `PlantCard.tsx`.
+  - Root Cause 2: Next.js 14 App Router production builds on Vercel do not support `<style jsx>` inside Client Components, causing hydration mismatch and execution exceptions.
+  - Solution & Enhancements:
+    1. Implemented robust normalization adapters `mapDbRowToSpecies` and `mapDbRowToObservation` in `src/services/api.ts` providing seamless bidirectional mapping between Supabase PostgreSQL `snake_case` rows and client `camelCase` models, complete with authentic fallback botanical images and default morphology/coordinate buffers.
+    2. Removed all `<style jsx>` blocks across `PlantCard.tsx`, `Navbar.tsx`, `ProtectedRoute.tsx`, `species/page.tsx`, and `species/[id]/page.tsx`.
+    3. Added reusable `.spinner` and `@keyframes spin` in `src/app/globals.css` alongside `.plant-card:hover` transitions and responsive desktop navigation rules.
+    4. Fortified all plant photo arrays, `localNames`, `description`, and `coordinatesRough` accessors across `PlantCard.tsx`, `PlantTable.tsx`, `species/[id]/page.tsx`, `page.tsx`, and `admin/plants/page.tsx` with defensive optional chaining (`?.`) and fallback default values.
+- **Files Created/Modified:**
+  - `src/services/api.ts`
+  - `src/app/globals.css`
+  - `src/components/species/PlantCard.tsx`
+  - `src/components/species/PlantTable.tsx`
+  - `src/components/auth/ProtectedRoute.tsx`
+  - `src/components/layout/Navbar.tsx`
+  - `src/app/(public)/species/page.tsx`
+  - `src/app/(public)/species/[id]/page.tsx`
+  - `src/app/page.tsx`
+  - `src/app/admin/plants/page.tsx`
+  - `Digital-Plant-Knowledge-System/design.md`
 
 #### Entry 005: 2026-09-28 13:38:00 +08:00
 - **Actor:** Antigravity AI Agent

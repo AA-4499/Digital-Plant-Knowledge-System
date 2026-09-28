@@ -232,20 +232,7 @@ export const Navbar: React.FC = () => {
           )}
         </div>
       )}
-
-      <style jsx>{`
-        @media (min-width: 768px) {
-          .desktop-nav {
-            display: flex !important;
-          }
-          .search-label {
-            display: inline !important;
-          }
-          .mobile-hamburger {
-            display: none !important;
-          }
-        }
-      `}</style>
     </header>
   );
 };
+

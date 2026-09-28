@@ -135,7 +135,7 @@ export default function AdminPlantsPage() {
                   <tr key={s.id} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
                     <td style={{ padding: '0.75rem 1rem' }}>
                       <img
-                        src={s.photos[0]?.url}
+                        src={s.photos?.[0]?.url || 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=300&q=80'}
                         alt={s.scientificName}
                         style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '8px' }}
                       />

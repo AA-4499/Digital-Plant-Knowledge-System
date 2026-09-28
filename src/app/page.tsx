@@ -206,7 +206,7 @@ export default function HomePage() {
                 >
                   <div style={{ position: 'relative', height: '220px', width: '100%', overflow: 'hidden' }}>
                     <img
-                      src={species.photos[0].url}
+                      src={species.photos?.[0]?.url || 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80'}
                       alt={species.scientificName}
                       style={{
                         width: '100%',
@@ -240,10 +240,10 @@ export default function HomePage() {
                       {species.scientificName}
                     </h3>
                     <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '0.85rem' }}>
-                      {species.commonName} {species.localNames.length > 0 && `(${species.localNames[0]})`}
+                      {species.commonName} {Array.isArray(species.localNames) && species.localNames.length > 0 && `(${species.localNames[0]})`}
                     </p>
                     <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1.25rem', flex: 1 }}>
-                      {species.description.slice(0, 110)}...
+                      {(species.description || '').slice(0, 110)}...
                     </p>
 
                     <Link

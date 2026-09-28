@@ -8,7 +8,14 @@ interface PlantCardProps {
 }
 
 export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
-  const primaryPhoto = species.photos.find((p) => p.isPrimary) || species.photos[0];
+  const primaryPhoto = 
+    species.photos?.find((p) => p.isPrimary) || 
+    species.photos?.[0] || {
+      url: 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=1200&q=80',
+      caption: species.commonName || 'Plant specimen',
+      credit: 'Sarawak Forestry Corporation',
+      isPrimary: true
+    };
 
   const getStatusBadgeStyle = (status: string) => {
     switch (status) {
@@ -25,7 +32,10 @@ export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
     }
   };
 
-  const badgeStyle = getStatusBadgeStyle(species.conservationStatus);
+  const badgeStyle = getStatusBadgeStyle(species.conservationStatus || 'Least Concern');
+  const localNameDisplay = Array.isArray(species.localNames) && species.localNames.length > 0 
+    ? `• ${species.localNames[0]}` 
+    : '';
 
   return (
     <article style={{
@@ -35,14 +45,13 @@ export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
       border: '1px solid var(--border-subtle)',
       boxShadow: 'var(--shadow-sm)',
       display: 'flex',
-      flexDirection: 'column',
-      transition: 'transform var(--transition-normal), box-shadow var(--transition-normal)'
+      flexDirection: 'column'
     }} className="plant-card">
       {/* Specimen Photo Thumbnail */}
       <div style={{ position: 'relative', height: '220px', width: '100%', overflow: 'hidden', background: '#E2E8DF' }}>
         <img
-          src={primaryPhoto?.url}
-          alt={species.scientificName}
+          src={primaryPhoto.url}
+          alt={species.scientificName || 'Plant specimen'}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
 
@@ -60,28 +69,30 @@ export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
           border: `1px solid ${badgeStyle.border}`,
           boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
         }}>
-          {species.iucnCode} • {species.conservationStatus}
+          {species.iucnCode || 'LC'} • {species.conservationStatus || 'Least Concern'}
         </div>
 
         {/* Habitat Zone Tag */}
-        <div style={{
-          position: 'absolute',
-          bottom: '0.75rem',
-          left: '0.75rem',
-          padding: '0.25rem 0.6rem',
-          borderRadius: 'var(--radius-sm)',
-          fontSize: '0.72rem',
-          fontWeight: 600,
-          background: 'rgba(13, 31, 20, 0.75)',
-          backdropFilter: 'blur(8px)',
-          color: '#FFFFFF',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.3rem'
-        }}>
-          <MapPin size={12} color="var(--color-emerald-light)" />
-          <span>{species.niahZone}</span>
-        </div>
+        {species.niahZone && (
+          <div style={{
+            position: 'absolute',
+            bottom: '0.75rem',
+            left: '0.75rem',
+            padding: '0.25rem 0.6rem',
+            borderRadius: 'var(--radius-sm)',
+            fontSize: '0.72rem',
+            fontWeight: 600,
+            background: 'rgba(13, 31, 20, 0.75)',
+            backdropFilter: 'blur(8px)',
+            color: '#FFFFFF',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.3rem'
+          }}>
+            <MapPin size={12} color="var(--color-emerald-light)" />
+            <span>{species.niahZone}</span>
+          </div>
+        )}
       </div>
 
       {/* Card Content Body */}
@@ -94,7 +105,7 @@ export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
             letterSpacing: '0.04em',
             color: 'var(--color-moss)'
           }}>
-            {species.family}
+            {species.family || 'Plantae'}
           </span>
           <span style={{
             fontSize: '0.75rem',
@@ -105,7 +116,7 @@ export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
             gap: '0.2rem'
           }}>
             <ShieldCheck size={13} color="var(--color-emerald)" />
-            {species.sarawakProtectionStatus}
+            {species.sarawakProtectionStatus || 'Protected'}
           </span>
         </div>
 
@@ -117,11 +128,11 @@ export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
           lineHeight: 1.3,
           marginBottom: '0.2rem'
         }}>
-          {species.scientificName}
+          {species.scientificName || 'Unknown Species'}
         </h3>
 
         <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
-          {species.commonName} {species.localNames.length > 0 && `• ${species.localNames[0]}`}
+          {species.commonName || 'Botanical specimen'} {localNameDisplay}
         </p>
 
         <p style={{
@@ -131,7 +142,7 @@ export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
           marginBottom: '1.25rem',
           flex: 1
         }}>
-          {species.description.slice(0, 100)}...
+          {(species.description || '').slice(0, 100)}...
         </p>
 
         <Link
@@ -152,13 +163,6 @@ export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
           <ArrowRight size={16} />
         </Link>
       </div>
-
-      <style jsx>{`
-        .plant-card:hover {
-          transform: translateY(-4px);
-          box-shadow: var(--shadow-hover);
-        }
-      `}</style>
     </article>
   );
 };
