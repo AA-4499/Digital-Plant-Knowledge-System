@@ -340,8 +340,36 @@ Digital-Plant-Knowledge-System/
 | `2026-09-28 13:38` | Antigravity AI Agent | `[Setup]` `[Database]` | Supabase Cloud Database | Created complete PostgreSQL schema (`schema.sql`), authentic Niah National Park seed dataset (`seed.sql`), RLS security policies, Storage bucket configuration, `.env.example`, and step-by-step setup guide (`supabase/README.md`). | `supabase/schema.sql`, `supabase/seed.sql`, `supabase/README.md`, `.env.example`, `design.md` |
 | `2026-09-28 14:05` | Antigravity AI Agent | `[Fix]` `[Bug]` | /species Client Exception & Vercel Deploy | Resolved client-side runtime exception on /species. Implemented snake_case-to-camelCase database row normalization (mapDbRowToSpecies, mapDbRowToObservation), eliminated deprecated Next.js 14 App Router <style jsx> blocks, implemented global CSS spinner animation, and fortified photo arrays and metadata across all cards and detail views with defensive null-safe chaining. | `src/services/api.ts`, `src/app/globals.css`, `src/components/**/*`, `src/app/**/*`, `design.md` |
 | `2026-09-28 14:32` | Antigravity AI Agent | `[Docs]` `[Sync]` | Living Design Document Alignment | Updated design.md to v1.3.0 to 100% reflect the live production website on Vercel and the current codebase. Updated Section 2 from Phase 0 to Phase 1 (Production Deployed), aligned Technical Inventory, updated Implementation Status Matrix to reflect live Admin and Catalog features, refreshed directory blueprint with all 28 project files, and documented the dual-mode Supabase data normalization layer. | `Digital-Plant-Knowledge-System/design.md` |
+| `2026-10-12 20:46` | Antigravity AI Agent | `[Feat]` `[Database]` `[Branch]` | Monorepo Branch `item-14-plant-schema` & Supabase Integration | Cloned team leader repository `niah-biodiversity-system`, created branch `item-14-plant-schema`, ported migrations `supabase/001_initial_schema.sql` and `supabase/002_seed_data.sql`, installed `@supabase/supabase-js`, created client `web/src/lib/supabase.ts` and dual-mode data layer `web/src/lib/species-db.ts`, and verified 0 errors across `npm run lint` and `npm run build`. | `supabase/001_initial_schema.sql`, `supabase/002_seed_data.sql`, `web/src/lib/supabase.ts`, `web/src/lib/species-db.ts`, `web/package.json`, `design.md` |
 
 ### Detailed Change Entries
+
+#### Entry 008: 2026-10-12 20:46:00 +08:00
+- **Actor:** Antigravity AI Agent
+- **Type:** Monorepo Integration & Item 14 Branch Setup (`[Feat]` `[Database]` `[Branch]`)
+- **Summary:**
+  - Cloned the team leader's central monorepo (`https://github.com/UmerNaseer2/niah-biodiversity-system.git`) into `niah-biodiversity-system/`.
+  - Created and checked out feature branch `item-14-plant-schema` in alignment with the team's `CONTRIBUTING.md` naming convention (Item 14: *Plant Database Schema & CRUD Operations*).
+  - Ported database migrations to monorepo root:
+    - [`supabase/001_initial_schema.sql`](file:///c:/Users/user/Desktop/Swinb/26-SEP-COS30049%20Computing%20Technology%20Innovation%20Project/niah-biodiversity-system/supabase/001_initial_schema.sql): PostgreSQL schema with PostGIS extension, `profiles`, `species`, `records`, `iot_nodes`, RLS policies, automatic user profile creation trigger (`handle_new_user`), and `botanical-photos` storage bucket.
+    - [`supabase/002_seed_data.sql`](file:///c:/Users/user/Desktop/Swinb/26-SEP-COS30049%20Computing%20Technology%20Innovation%20Project/niah-biodiversity-system/supabase/002_seed_data.sql): Seed dataset matching mobile wireframe species slugs (`eusideroxylon-zwageri`, `nepenthes-ampullaria`, etc.), sample plant field records, and IoT nodes.
+  - Implemented Supabase Integration in `web/`:
+    - Installed `@supabase/supabase-js` (^2.117.3) in `web/package.json`.
+    - Created [`web/src/lib/supabase.ts`](file:///c:/Users/user/Desktop/Swinb/26-SEP-COS30049%20Computing%20Technology%20Innovation%20Project/niah-biodiversity-system/web/src/lib/supabase.ts): Browser client and service client initializers with automatic `isSupabaseConfigured` detection.
+    - Created [`web/src/lib/species-db.ts`](file:///c:/Users/user/Desktop/Swinb/26-SEP-COS30049%20Computing%20Technology%20Innovation%20Project/niah-biodiversity-system/web/src/lib/species-db.ts): Resilient data access layer (`getSpeciesList`, `getSpeciesBySlug`, `getPublishedRecordsForSpecies`, `insertSpecies`) that queries Supabase when configured and seamlessly falls back to local data when offline or in CI.
+  - CI Quality Gate Verification:
+    - Resolved TypeScript lint issues (`no-explicit-any`) to ensure strict compatibility.
+    - Successfully verified `npm run lint` (0 errors, 0 warnings).
+    - Successfully verified `npm run build` (Turbopack compiled and generated all static/SSG/dynamic pages in 37.3s with exit code 0).
+  - Committed changes to branch `item-14-plant-schema` (`commit 2f1105b`).
+- **Files Created/Modified:**
+  - `niah-biodiversity-system/supabase/001_initial_schema.sql`
+  - `niah-biodiversity-system/supabase/002_seed_data.sql`
+  - `niah-biodiversity-system/web/src/lib/supabase.ts`
+  - `niah-biodiversity-system/web/src/lib/species-db.ts`
+  - `niah-biodiversity-system/web/package.json`
+  - `niah-biodiversity-system/web/package-lock.json`
+  - `Digital-Plant-Knowledge-System/design.md`
 
 #### Entry 007: 2026-09-28 14:32:00 +08:00
 - **Actor:** Antigravity AI Agent
